@@ -1,0 +1,44 @@
+<mat-card class="note" *ngIf="noteStatus==='view'">
+    <mat-card-header>
+    <mat-card-title>{{note.noteTitle}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{note.noteText}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="delete" mat-raised-button color="accent" (click)="deleteNoteEvent()">delete</button>
+        <button class="edit" mat-button (click)="noteStatus='edit'">In-page edit</button>
+        <button class="edit" mat-button routerLink="/note/{{note._id}}">Edit</button>
+    </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="note edit" *ngIf="noteStatus==='edit'">
+        <mat-card-content>
+        <mat-form-field>
+            <mat-label>Note title</mat-label>
+            <input matInput placeholder="Your title" [(ngModel)]="note.noteTitle">
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+            <mat-label>Note text</mat-label>
+            <textarea matInput placeholder="Your text" [(ngModel)]="note.noteText"></textarea>
+        </mat-form-field>        
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="delete" mat-raised-button color="accent" (click)="deleteNoteEvent()">Delete</button>
+            <button class="update" mat-raised-button color="primary" (click)="updateNote()">Save</button>
+        </mat-card-actions>
+        </mat-card>
+        <mat-card class="note error" *ngIf="noteStatus==='error'" style="background: red; color:white;">
+       <mat-card-header>
+           Edit error, please try again
+       </mat-card-header>
+       <mat-card-actions>
+           <button class="ok" mat-raised-button color="warm" (click)="noteStatus='edit'">Ok</button>
+       </mat-card-actions>
+       </mat-card>
+       <mat-card class="note loading" *ngIf="noteStatus==='loading'">
+           <mat-card-header>Loading ...</mat-card-header>
+       </mat-card>

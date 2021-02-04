@@ -1,0 +1,6 @@
+
+<form>
+    <input name="note-title" type="text" [(ngModel)]="note.noteTitle" placeholder="Note Title" />
+    <textarea name="note-text" [(ngModel)]="note.noteText" placeholder="Note Text" ></textarea>
+        <button (click)="updateNote()">Save</button>
+</form>

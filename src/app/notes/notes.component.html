@@ -1,0 +1,28 @@
+<mat-card class="new-note">
+    <mat-card-header>
+        <mat-card-title>New Note</mat-card-title>
+        <mat-card-subtitle>Please fill all field</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Note title</mat-label>
+                <!-- enlever notesService pour que le notetitle sera recuperer de note component-->
+                <!-- mettre notesService si on veut recuperer notetitle de noteservice-->
+    <input matInput type="text" [(ngModel)]="noteTitle">
+    <button mat-button *ngIf="noteTitle" matSuffix mat-icon-button area-label="Clear" (click)="noteTitle">
+        <mat-icon>close</mat-icon>
+    </button>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="noteText" placeholder="Note Text" ></textarea>
+    </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button (click)="addNote()" mat-raised-button color="accent">Ajouter</button>
+    </mat-card-actions>
+
+    <div class="notes">
+        <app-note-block *ngFor="let note of notes" [note]="note" (deleteNote)="deleteNote($event)"></app-note-block>
+    </div>

@@ -1,0 +1,17 @@
+<mat-toolbar color='primary'>
+    <span>noteapp</span>
+    <button routerLink="/" routerLinkActive="active-link" class="element">
+    Home
+    </button>
+    <button routerLink="/notes" routerLinkActive="active-link" class="element">
+        Notes
+    </button>
+
+<div style="margin-left: 250px;">
+    <span *ngIf="authService.connectedUser">{{authService.connectedUser.fullName}}</span>
+ <button *ngIf="!authService.connectedUser" routerLink="/login" routerLinkActive="active-link" mat-raised-button color="accent">Login</button>
+ <button *ngIf="!authService.connectedUser" routerLink="/register" routerLinkActive="active-link" mat-raised-button color="accent">Register</button>
+ <button *ngIf="authService.connectedUser" routerLinkActive="active-link" mat-raised-button color="accent" (click)="logout()">Logout</button>
+</div>
+        </mat-toolbar>
+    
